@@ -1,5 +1,6 @@
 import { ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
+import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { existsSync, mkdirSync } from 'fs';
 import { join } from 'path';
 import { AppModule } from './app.module';
@@ -49,6 +50,16 @@ async function bootstrap() {
 
         // Global prefix
         app.setGlobalPrefix('api');
+
+        // Swagger UI
+        const swaggerConfig = new DocumentBuilder()
+            .setTitle('YTRC Center API')
+            .setDescription('YTRC NestJS Backend API Documentation')
+            .setVersion('1.0')
+            .addBearerAuth()
+            .build();
+        const document = SwaggerModule.createDocument(app, swaggerConfig);
+        SwaggerModule.setup('api/docs', app, document);
 
         const port = process.env.API_PORT || 2530;
         await app.listen(port, '0.0.0.0');

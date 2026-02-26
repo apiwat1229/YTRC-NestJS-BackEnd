@@ -85,11 +85,17 @@ import {
                     ProductionReportRow,
                     CpkAnalysis,
                 ],
-                synchronize: false,
+                synchronize: configService.get('DB_SYNC') !== 'false',
                 logging: configService.get('NODE_ENV') === 'development' ? ['error', 'warn'] : false,
-                ssl: configService.get('NODE_ENV') === 'production'
-                    ? { rejectUnauthorized: false }
-                    : false,
+                ssl: (() => {
+                    const dbSsl = configService.get<string>('DB_SSL');
+                    if (dbSsl === 'false') return false;
+                    if (dbSsl === 'true') return { rejectUnauthorized: false };
+                    // Default: enable SSL only in production
+                    return configService.get('NODE_ENV') === 'production'
+                        ? { rejectUnauthorized: false }
+                        : false;
+                })(),
             }),
         }),
     ],
