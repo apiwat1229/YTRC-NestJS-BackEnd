@@ -1,0 +1,28 @@
+services:
+  api:
+    build: .
+    container_name: ytrc-backend-api
+    expose:
+      - "2530" # Internal only, accessed by Nginx
+    env_file:
+      - .env
+    volumes:
+      - ./uploads:/app/uploads
+    restart: always
+
+  nginx:
+    image: nginx:stable-alpine
+    container_name: ytrc-backend-nginx
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./uploads:/usr/share/nginx/html/uploads:ro
+    depends_on:
+      - api
+    restart: always
+
+# Note: You can add a postgres service here if you don't have an external database
+# networks:
+#   default:
+#     name: ytrc-network
