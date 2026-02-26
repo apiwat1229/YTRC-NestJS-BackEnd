@@ -1,4 +1,4 @@
-# YTRC NestJS Backend
+# YTRC-NestJS-BackEnd
 
 ระบบจัดการข้อมูลหลังบ้าน (Backend API) สำหรับ YTRC พัฒนาด้วย NestJS 11 และ TypeORM
 
