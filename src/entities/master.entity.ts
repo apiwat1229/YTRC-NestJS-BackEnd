@@ -6,13 +6,13 @@ export class Province {
     id: number;
 
     @Column({ nullable: true })
+    code: string;
+
+    @Column({ nullable: true })
     name_th: string;
 
     @Column({ nullable: true })
     name_en: string;
-
-    @Column({ nullable: true })
-    geography_id: number;
 }
 
 @Entity('districts')
@@ -21,16 +21,16 @@ export class District {
     id: number;
 
     @Column({ nullable: true })
+    code: string;
+
+    @Column({ nullable: true })
     name_th: string;
 
     @Column({ nullable: true })
     name_en: string;
 
-    @Column({ nullable: true })
-    province_id: number;
-
-    get provinceId(): number { return this.province_id; }
-    set provinceId(val: number) { this.province_id = val; }
+    @Column({ name: 'province_id', nullable: true })
+    provinceId: number;
 }
 
 @Entity('subdistricts')
@@ -44,12 +44,9 @@ export class Subdistrict {
     @Column({ nullable: true })
     name_en: string;
 
-    @Column({ nullable: true })
-    district_id: number;
+    @Column({ name: 'district_id', nullable: true })
+    districtId: number;
 
     @Column({ nullable: true })
     zip_code: string;
-
-    get districtId(): number { return this.district_id; }
-    set districtId(val: number) { this.district_id = val; }
 }

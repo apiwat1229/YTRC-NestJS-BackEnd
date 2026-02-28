@@ -49,7 +49,7 @@ export class Supplier {
     @Column({ nullable: true })
     notes: string;
 
-    @Column({ name: 'rubber_type_codes', type: 'simple-array', default: '' })
+    @Column({ name: 'rubber_type_codes', type: 'text', array: true, default: [], nullable: true })
     rubberTypeCodes: string[];
 
     @Column({ name: 'first_name', nullable: true })

@@ -9,7 +9,7 @@ import {
 } from 'typeorm';
 import { User } from './user.entity';
 
-@Entity('notification_groups')
+@Entity('NotificationGroup')
 export class NotificationGroup {
     @PrimaryGeneratedColumn('uuid')
     id: string;
@@ -26,20 +26,20 @@ export class NotificationGroup {
     @Column({ nullable: true })
     color: string;
 
-    @Column({ default: true })
+    @Column({ name: 'isActive', default: true })
     isActive: boolean;
 
     @ManyToMany(() => User, 'notificationGroups')
     @JoinTable({
-        name: 'notification_group_members',
-        joinColumn: { name: 'notification_group_id', referencedColumnName: 'id' },
-        inverseJoinColumn: { name: 'user_id', referencedColumnName: 'id' },
+        name: '_NotificationGroupMembers',
+        joinColumn: { name: 'A', referencedColumnName: 'id' },
+        inverseJoinColumn: { name: 'B', referencedColumnName: 'id' },
     })
     members: User[];
 
-    @CreateDateColumn()
+    @CreateDateColumn({ name: 'createdAt' })
     createdAt: Date;
 
-    @UpdateDateColumn()
+    @UpdateDateColumn({ name: 'updatedAt' })
     updatedAt: Date;
 }

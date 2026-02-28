@@ -41,17 +41,35 @@ export class ITTicket {
     @Column({ name: 'asset_id', nullable: true })
     assetId: string;
 
+    @Column({ nullable: true })
+    location: string;
+
+    @Column({ name: 'approver_id', nullable: true })
+    approverId: string;
+
+    @Column({ name: 'expected_date', nullable: true, type: 'timestamp' })
+    expectedDate: Date;
+
+    @Column({ name: 'is_asset_request', default: false })
+    isAssetRequest: boolean;
+
+    @Column({ name: 'issued_at', nullable: true, type: 'timestamp' })
+    issuedAt: Date;
+
+    @Column({ name: 'issued_by', nullable: true })
+    issuedBy: string;
+
+    @Column({ nullable: true, type: 'int' })
+    quantity: number;
+
     @Column({ name: 'resolved_at', nullable: true, type: 'timestamp' })
     resolvedAt: Date;
 
-    @Column({ name: 'closed_at', nullable: true, type: 'timestamp' })
-    closedAt: Date;
+    @Column({ nullable: true, type: 'text' })
+    feedback: string;
 
-    @Column({ name: 'due_date', nullable: true, type: 'timestamp' })
-    dueDate: Date;
-
-    @Column({ type: 'json', nullable: true })
-    attachments: any;
+    @Column({ nullable: true, type: 'int' })
+    rating: number;
 
     @OneToMany('TicketComment', 'ticket', { cascade: true })
     comments: any[];
@@ -75,18 +93,12 @@ export class TicketComment {
     @JoinColumn({ name: 'ticket_id' })
     ticket: ITTicket;
 
-    @Column({ name: 'author_id' })
+    @Column({ name: 'user_id' })
     authorId: string;
 
     @Column({ type: 'text' })
     content: string;
 
-    @Column({ type: 'json', nullable: true })
-    attachments: any;
-
     @CreateDateColumn({ name: 'created_at' })
     createdAt: Date;
-
-    @UpdateDateColumn({ name: 'updated_at' })
-    updatedAt: Date;
 }

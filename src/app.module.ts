@@ -20,7 +20,7 @@ import { MasterModule } from './master/master.module';
 import { MyMachineModule } from './mymachine/mymachine.module';
 import { NotificationGroupsModule } from './notification-groups/notification-groups.module';
 import { NotificationsModule } from './notifications/notifications.module';
-import { PlcModule } from './plc/plc.module';
+// import { PlcModule } from './plc/plc.module'; // Disabled - PLC not in use
 import { PoolsModule } from './pools/pools.module';
 import { PostsModule } from './posts/posts.module';
 import { PrinterUsageModule } from './printer-usage/printer-usage.module';
@@ -58,7 +58,7 @@ import { UsersModule } from './users/users.module';
         ITAssetsModule,
         MyMachineModule,
         MaintenanceModule,
-        PlcModule,
+        // PlcModule, // Disabled - PLC not in use
         PoolsModule,
         JobOrdersModule,
         RawMaterialPlansModule,

@@ -1,5 +1,5 @@
 // API Request/Response Types
-import { Type } from 'class-transformer';
+import { Transform, Type } from 'class-transformer';
 import { IsArray, IsBoolean, IsDate, IsDateString, IsEmail, IsIn, IsNotEmpty, IsNumber, IsOptional, IsString } from 'class-validator';
 
 export interface ApiResponse<T = any> {
@@ -262,6 +262,7 @@ export class CreateSupplierDto {
     phone?: string;
 
     @IsOptional()
+    @Transform(({ value }) => (value === '' || value === null) ? undefined : value)
     @IsEmail()
     email?: string;
 
@@ -354,6 +355,7 @@ export class UpdateSupplierDto {
     phone?: string;
 
     @IsOptional()
+    @Transform(({ value }) => (value === '' || value === null) ? undefined : value)
     @IsEmail()
     email?: string;
 

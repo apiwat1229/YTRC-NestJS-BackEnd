@@ -27,16 +27,16 @@ export class Notification {
     @Column({ name: 'user_id' })
     userId: string;
 
-    @Column({ name: 'source_app' })
+    @Column({ name: 'sourceApp' })
     sourceApp: string;
 
-    @Column({ name: 'action_type' })
+    @Column({ name: 'actionType' })
     actionType: string;
 
-    @Column({ name: 'entity_id', nullable: true })
+    @Column({ name: 'entityId', nullable: true })
     entityId: string;
 
-    @Column({ name: 'action_url', nullable: true })
+    @Column({ name: 'actionUrl', nullable: true })
     actionUrl: string;
 
     @Column({ type: 'json', nullable: true })

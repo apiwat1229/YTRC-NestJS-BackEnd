@@ -17,6 +17,21 @@ export class Machine {
     @Column({ default: 'Active' })
     status: string;
 
+    @Column({ name: 'serial_number', nullable: true })
+    serialNumber: string;
+
+    @Column({ name: 'install_date', nullable: true, type: 'timestamp' })
+    installDate: Date;
+
+    @Column({ name: 'asset_tag', nullable: true })
+    assetTag: string;
+
+    @Column({ nullable: true, type: 'text' })
+    notes: string;
+
+    @Column({ nullable: true })
+    image: string;
+
     @CreateDateColumn({ name: 'created_at' })
     createdAt: Date;
 

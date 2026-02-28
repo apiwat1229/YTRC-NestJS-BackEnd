@@ -14,12 +14,12 @@ export class Post {
     @Column({ default: false })
     published: boolean;
 
-    @Column({ name: 'author_id' })
+    @Column({ name: 'authorId' })
     authorId: string;
 
-    @CreateDateColumn()
+    @CreateDateColumn({ name: 'createdAt' })
     createdAt: Date;
 
-    @UpdateDateColumn()
+    @UpdateDateColumn({ name: 'updatedAt' })
     updatedAt: Date;
 }

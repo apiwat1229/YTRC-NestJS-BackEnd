@@ -1,6 +1,7 @@
 import { Global, Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { UuidSubscriber } from './uuid.subscriber';
 import {
     ApprovalLog,
     ApprovalRequest,
@@ -8,6 +9,7 @@ import {
     Booking,
     BookingLabSample,
     CpkAnalysis,
+    District,
     GLCode,
     ITAsset,
     ITTicket,
@@ -26,6 +28,7 @@ import {
     PrinterUserMapping,
     ProductionReport,
     ProductionReportRow,
+    Province,
     RawMaterialPlan,
     RawMaterialPlanPoolDetail,
     RawMaterialPlanRow,
@@ -34,6 +37,7 @@ import {
     RubberType,
     StockCategory,
     StorageLocation,
+    Subdistrict,
     Supplier,
     TicketComment,
     User,
@@ -84,9 +88,13 @@ import {
                     ProductionReport,
                     ProductionReportRow,
                     CpkAnalysis,
+                    Province,
+                    District,
+                    Subdistrict,
                 ],
+                subscribers: [UuidSubscriber],
                 synchronize: configService.get('DB_SYNC') !== 'false',
-                logging: configService.get('NODE_ENV') === 'development' ? ['error', 'warn'] : false,
+                logging: ['error', 'warn'],
                 ssl: (() => {
                     const dbSsl = configService.get<string>('DB_SSL');
                     if (dbSsl === 'false') return false;
